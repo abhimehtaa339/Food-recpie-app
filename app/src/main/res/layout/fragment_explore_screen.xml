@@ -24,12 +24,12 @@
         android:padding="12dp"
         android:textColor="#303443"
         android:textColorHint="#45454d"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/viewflipper"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explore_text"
-        app:layout_constraintVertical_bias="0.488" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/explore_text"
@@ -53,12 +53,12 @@
         android:layout_height="150dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:padding="7dp"
-        android:background="@drawable/viewflipper_bg"
         android:autoStart="true"
+        android:background="@drawable/viewflipper_bg"
         android:flipInterval="2500"
         android:inAnimation="@android:anim/slide_in_left"
         android:outAnimation="@android:anim/slide_out_right"
+        android:padding="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,22 +70,75 @@
             android:id="@+id/image1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-             />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/image2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/image3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
     </ViewFlipper>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/quick_recpie"
+        android:fontFamily="@font/josenfin"
+        android:textColor="#343035"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.832"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewflipper" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

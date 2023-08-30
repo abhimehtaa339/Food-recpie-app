@@ -21,8 +21,6 @@ public class explore_screen extends Fragment {
             "https://cdn.pixabay.com/photo/2016/02/05/15/34/pasta-1181189_1280.jpg",
             "https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466_1280.jpg",
             "https://cdn.pixabay.com/photo/2015/10/02/15/59/olive-oil-968657_1280.jpg",
-            "https://cdn.pixabay.com/photo/2016/03/05/19/02/salmon-1238248_1280.jpg"
-
     };
 
     private ImageView image1 , image2 , image3;
