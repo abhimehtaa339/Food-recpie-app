@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Food recipes</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="daily_inspiration">Daily Inspiration</string>
+    <string name="search">Search...</string>
+    <string name="home">Home</string>
+    <string name="exolore">Explore\n</string>
+    <string name="Favourite">Favourite\n</string>
+    <string name="explore_the_nrecipe_naround_the_world">Explore the \nrecipe\naround the world</string>
+</resources>

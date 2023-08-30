@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fafafa"
+    tools:context=".MainActivity">
+
+
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/tablayout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      app:backgroundTint="#fafafa"
+      app:elevation="5dp"
+      app:menu="@menu/menu"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="1.0"
+      app:itemIconTint="#2d2a2e"
+      app:itemTextColor="#373737"/>
+
+  <FrameLayout
+      android:id="@+id/viewpager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginBottom="78dp"
+      android:orientation="vertical"
+      app:layout_constraintBottom_toTopOf="@+id/tablayout"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.5" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
