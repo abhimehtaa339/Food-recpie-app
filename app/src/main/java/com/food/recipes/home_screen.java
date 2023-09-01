@@ -30,7 +30,7 @@ import java.util.Random;
 
 
 public class home_screen extends Fragment {
-    private String random_recipe = randomRecipes();
+    private final String random_recipe = randomRecipes();
     private final String url = "https://api.edamam.com/api/recipes/v2?type=public&q="+random_recipe+"&app_id=7b682c18&app_key=1f76887b48815e4c658877c6ed2d9eb8";
     private RecyclerView recyclerView;
     public ArrayList<modal> data = new ArrayList<>();
@@ -91,7 +91,7 @@ public class home_screen extends Fragment {
 
     private String randomRecipes() {
 
-        String[] recipe_array_nonveg = new String[]{"lamb" , "pork" , "prawns" , "chicken" , "steak"};
+        String[] recipe_array_nonveg = new String[]{"lamb" , "pasta" , "prawns" , "chicken" , "steak"};
 
         Random random = new Random();
         int random_index = random.nextInt(recipe_array_nonveg.length);
