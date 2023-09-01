@@ -7,7 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +26,7 @@ public class explore_screen extends Fragment {
     };
 
     private ImageView image1 , image2 , image3;
-
+    private ImageButton button1 , button2 , button3 , button4 , button5 , button6;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,10 +36,38 @@ public class explore_screen extends Fragment {
         image1 = view.findViewById(R.id.image1);
         image2 = view.findViewById(R.id.image2);
         image3 = view.findViewById(R.id.image3);
+        imageLoading();
+
+        button1 = view.findViewById(R.id.button1);
+        button2 = view.findViewById(R.id.button2);
+        button3 = view.findViewById(R.id.button3);
+        button4 = view.findViewById(R.id.button4);
+        button5 = view.findViewById(R.id.button5);
+        button6 = view.findViewById(R.id.button6);
+
+        OnclickListner(button1 , "Button 1 is clicked");
+        OnclickListner(button2 , "Button 2 is clicked");
+        OnclickListner(button3 , "Button 3 is clicked");
+        OnclickListner(button4 , "Button 4 is clicked");
+        OnclickListner(button5 , "Button 5 is clicked");
+        OnclickListner(button6 , "Button 6 is clicked");
+
+        return view;
+    }
+
+    private void imageLoading() {
+
         Glide.with(getContext()).load(images[0]).placeholder(R.drawable.placeholder).into(image1);
         Glide.with(getContext()).load(images[1]).placeholder(R.drawable.placeholder).into(image2);
         Glide.with(getContext()).load(images[2]).placeholder(R.drawable.placeholder).into(image3);
+    }
 
-        return view;
+    private void OnclickListner(ImageButton button, String msg  ){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

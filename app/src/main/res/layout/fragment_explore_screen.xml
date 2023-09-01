@@ -91,8 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="@string/quick_recpie"
         android:fontFamily="@font/josenfin"
+        android:text="@string/quick_recpie"
         android:textColor="#343035"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,6 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ImageButton
+            android:id="@+id/button1"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -124,6 +125,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <ImageButton
+            android:id="@+id/button2"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -133,6 +135,7 @@
             android:src="@mipmap/ic_launcher" />
 
         <ImageButton
+            android:id="@+id/button3"
             android:layout_width="100dp"
             android:layout_height="70dp"
             android:layout_margin="10dp"
@@ -140,5 +143,51 @@
             android:elevation="5dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <ImageButton
+            android:id="@+id/button4"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/button5"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+        <ImageButton
+            android:id="@+id/button6"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_margin="10dp"
+            android:backgroundTint="#fafafa"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_launcher" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
