@@ -1,6 +1,7 @@
 package com.food.recipes;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,15 @@ public class custom_adapter extends RecyclerView.Adapter<custom_adapter.viewHold
         Glide.with(context).load(mod.getThumbnail_image()).into(holder.img);
         String text = mod.getLabel();
         holder.textView.setText(text);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context , instruction_screen.class);
+                i.putExtra("name" , mod.getLabel());
+                i.putExtra("image" , mod.getThumbnail_image());
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
