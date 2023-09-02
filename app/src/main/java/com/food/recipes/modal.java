@@ -1,21 +1,22 @@
 package com.food.recipes;
 
 public class modal {
-    String label , thumbnail_image , regular_image , url , cuisine_type ;
+    String title, thumbnail_image , url;
+    int readyin;
 
-    public modal(String label, String thumbnail_image) {
-        this.label = label;
+    public modal(String title, String thumbnail_image, int readyin, String url) {
+        this.title = title;
         this.thumbnail_image = thumbnail_image;
+        this.readyin = readyin;
+        this.url = url;
     }
 
-
-
     public String getLabel() {
-        return label;
+        return title;
     }
 
     public void setLabel(String label) {
-        this.label = label;
+        this.title = label;
     }
 
     public String getThumbnail_image() {
@@ -26,14 +27,6 @@ public class modal {
         this.thumbnail_image = thumbnail_image;
     }
 
-    public String getRegular_image() {
-        return regular_image;
-    }
-
-    public void setRegular_image(String regular_image) {
-        this.regular_image = regular_image;
-    }
-
     public String getUrl() {
         return url;
     }
@@ -42,11 +35,5 @@ public class modal {
         this.url = url;
     }
 
-    public String getCuisine_type() {
-        return cuisine_type;
-    }
 
-    public void setCuisine_type(String cuisine_type) {
-        this.cuisine_type = cuisine_type;
-    }
 }
