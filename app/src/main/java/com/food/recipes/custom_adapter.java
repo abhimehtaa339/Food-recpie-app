@@ -40,7 +40,7 @@ public class custom_adapter extends RecyclerView.Adapter<custom_adapter.viewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context , instruction_screen.class);
+                Intent i = new Intent(context , information_screen.class);
                 i.putExtra("name" , mod.getLabel());
                 i.putExtra("image" , mod.getThumbnail_image());
                 context.startActivity(i);
