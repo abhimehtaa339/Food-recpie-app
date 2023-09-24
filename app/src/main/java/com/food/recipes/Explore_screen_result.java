@@ -49,7 +49,7 @@ public class Explore_screen_result extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new search_screen_adapter(getApplicationContext() , data);
+        adapter = new search_screen_adapter(this , data);
         recyclerView.setAdapter(adapter);
         fetchData(recipe);
     }
