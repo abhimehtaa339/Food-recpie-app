@@ -123,10 +123,6 @@ class information_screen : AppCompatActivity() {
         fragment.arguments = bundle
        supportFragmentManager.beginTransaction().replace(R.id.viewpager , fragment).commit()
     }
-
-    private fun add(){
-
-    }
 }
 
 
