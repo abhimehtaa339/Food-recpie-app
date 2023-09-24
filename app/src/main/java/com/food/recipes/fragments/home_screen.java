@@ -1,4 +1,4 @@
-package com.food.recipes;
+package com.food.recipes.fragments;
 
 import android.os.Bundle;
 
@@ -20,8 +20,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.food.recipes.R;
+import com.food.recipes.adapter.custom_adapter;
+import com.food.recipes.Modals.modal;
 import com.github.ybq.android.spinkit.sprite.Sprite;
-import com.github.ybq.android.spinkit.style.ThreeBounce;
 import com.github.ybq.android.spinkit.style.Wave;
 import com.google.android.material.card.MaterialCardView;
 
@@ -32,7 +34,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+import java.util.Objects;
 
 
 public class home_screen extends Fragment {
@@ -42,7 +44,7 @@ public class home_screen extends Fragment {
     private ProgressBar bar;
     public custom_adapter adapter;
     private MaterialCardView daily_inspiration;
-    private JSONArray arr;
+    private JSONArray arr , ingridents_array;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,6 +84,12 @@ public class home_screen extends Fragment {
                         String url = arr.getJSONObject(i).getString("sourceUrl");
                         Log.d("url" , url);
                         int readyin = arr.getJSONObject(i).getInt("readyInMinutes");
+                        int id = arr.getJSONObject(i).getInt("id");
+                        Log.d("id" , String.valueOf(id));
+                        String summary = arr.getJSONObject(i).getString("summary");
+                        Log.d("summary" , summary);
+
+                        
                         data.add(new modal(title , img , readyin , url));
                         adapter.notifyDataSetChanged();
                     }
@@ -99,7 +107,7 @@ public class home_screen extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String , String>Headers = new HashMap<>();
-                Headers.put("x-api-key" , "552d63a010254181bb0fef40c75b8a47" );
+                Headers.put("x-api-key" , requireContext().getString(R.string.api_key) );
                 return Headers;
             }
         };

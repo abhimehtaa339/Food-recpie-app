@@ -1,75 +1,127 @@
 package com.food.recipes
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.FrameLayout
+import android.widget.ImageButton
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.food.recipes.Database.Recipe_database_bulider
+import com.food.recipes.Modals.Saved_Recipe_Entity
+import com.food.recipes.fragment_kotlin.recipe_ingredints_screen
+import com.food.recipes.fragment_kotlin.recpie_Summary_Screen
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.button.MaterialButton
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class information_screen : AppCompatActivity() {
 
-    private var isIconChanged = false
-    private lateinit var adapter: FragmentStateAdapter
+    private var isIconChanged = true
+    private lateinit var label : String
+    private lateinit var image : String
+    private lateinit var url : String
+    private lateinit var database : Recipe_database_bulider
+    private var exist = true
+    private lateinit var topbar : MaterialToolbar
+    private val uiScope = CoroutineScope(Dispatchers.IO)
+    private var isSelected = false
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_information_screen)
 
-//       val label: TextView= findViewById(R.id.label)
-//       val image: ImageView = findViewById(R.id.image)
-//
-//       val receivedIntent = intent
-//        val name = receivedIntent.getStringExtra("name")
-//        label.text = name
-//       Glide.with(applicationContext).load(receivedIntent.getStringExtra("image")).placeholder(getDrawable(R.drawable.ic_launcher_background)).into(image)
-        val topbar = findViewById<MaterialToolbar>(R.id.topbar)
-        var viewpager = findViewById<ViewPager2>(R.id.viewpager)
+        val backbutton = findViewById<ImageButton>(R.id.backbutton)
+        val sharebutton = findViewById<ImageButton>(R.id.sharebutton)
+        val favourite = findViewById<ImageButton>(R.id.favourite)
+        val viewpager = findViewById<FrameLayout>(R.id.viewpager)
+        val navigation = findViewById<BottomNavigationView>(R.id.bottombar)
 
-        adapter = viewpager2_adapter(supportFragmentManager , lifecycle)
-        viewpager.adapter = adapter
-
-        setSupportActionBar(topbar)
-        topbar.setNavigationOnClickListener{
-            val intent =  Intent(this , MainActivity::class.java )
-            startActivity(intent)
-        }
+        val extras = intent.extras
+            label = extras?.getString("name").toString()
+            image = extras?.getString("image").toString()
+            url = extras?.getString("url").toString()
+            Log.d("label" , label)
 
 
-        topbar.setOnMenuItemClickListener {menuItem ->
-            when(menuItem.itemId){
-                R.id.sharebutton ->{
-                    Toast.makeText(this , "working" , Toast.LENGTH_SHORT).show()
+        navigation.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener{ item ->
+            when(item.itemId){
+                R.id.summary -> {
+                    replaceFragment(recpie_Summary_Screen())
                     true
                 }
-                R.id.favourite ->{
-                    isIconChanged = !isIconChanged
-                    if (isIconChanged){
-                        menuItem.icon = getDrawable(R.drawable.baseline_bookmark_24)
-                        Toast.makeText(this , "Recipe saved in Favourites" , Toast.LENGTH_SHORT).show()
-                    }else{
-                        menuItem.icon = getDrawable(R.drawable.outline_bookmark_border_24)
-                        Toast.makeText(this , "Recipe removed from Favourites" , Toast.LENGTH_SHORT).show()
-                    }
+                R.id.ingredients ->{
+                    replaceFragment(recipe_ingredints_screen())
                     true
                 }
                 else -> false
             }
+        })
+        navigation.selectedItemId = R.id.summary
+
+
+        database = Recipe_database_bulider.getDatabase(this)
+
+
+        backbutton.setOnClickListener{
+            val intent = Intent(applicationContext , MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
+
+        sharebutton.setOnClickListener{
+            val i = Intent(Intent.ACTION_SEND)
+            i.putExtra(Intent.EXTRA_TEXT , url)
+            i.type = "text/plain"
+            startActivity(Intent.createChooser(i , "Share via"))
+        }
+
+        GlobalScope.launch {
+            if (database.SavedDao().getExist(url)){
+                favourite.setImageResource(R.drawable.baseline_bookmark_24)
+                isSelected = !isSelected
+            }else{
+                favourite.setImageResource(R.drawable.outline_bookmark_border_24)
+            }
+        }
+
+
+
+        favourite.setOnClickListener{
+            isSelected = !isSelected
+            if(!isSelected){
+                favourite.setImageResource(R.drawable.outline_bookmark_border_24)
+                GlobalScope.launch {
+                    database.SavedDao().delete(url)
+                }
+            }else{
+                favourite.setImageResource(R.drawable.baseline_bookmark_24)
+                GlobalScope.launch {
+                    database.SavedDao().insert(Saved_Recipe_Entity(0 , label , url))
+                }
+            }
+        }
+
+
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.top_bar , menu)
-        return true
+
+
+    private fun replaceFragment(fragment: Fragment) {
+        val bundle = Bundle()
+        bundle.putString("label" , label)
+        bundle.putString("image" , image)
+        fragment.arguments = bundle
+       supportFragmentManager.beginTransaction().replace(R.id.viewpager , fragment).commit()
     }
 
 }

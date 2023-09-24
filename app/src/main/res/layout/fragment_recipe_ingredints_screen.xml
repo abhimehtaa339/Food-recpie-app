@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".recipe_ingredints_screen">
+    tools:context=".fragment_kotlin.recipe_ingredints_screen">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -1,8 +1,8 @@
-package com.food.recipes;
+package com.food.recipes.Modals;
 
 public class modal {
     String title, thumbnail_image , url;
-    int readyin;
+    int readyin , id;
 
     public modal(String title, String thumbnail_image, int readyin, String url) {
         this.title = title;

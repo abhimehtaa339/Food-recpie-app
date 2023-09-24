@@ -7,7 +7,7 @@
         app:showAsAction="ifRoom"
         android:title="TODO" />
 
-    <item android:id="@+id/favourite"
+    <item android:id="@+id/favouritee"
         android:icon="@drawable/outline_bookmark_border_24"
         app:showAsAction="ifRoom"
         android:title="TODO" />

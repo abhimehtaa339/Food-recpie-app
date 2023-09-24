@@ -1,4 +1,4 @@
-package com.food.recipes;
+package com.food.recipes.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -22,12 +27,21 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.food.recipes.Explore_screen_result;
+import com.food.recipes.Modals.modal;
+import com.food.recipes.R;
+import com.food.recipes.adapter.custom_adapter;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.DoubleBounce;
 import com.github.ybq.android.spinkit.style.FoldingCube;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -41,9 +55,10 @@ public class explore_screen extends Fragment {
 
     private ImageView image1 , image2 , image3;
     private ImageButton button1 , button2 , button3 , button4 , button5 , button6;
-
-
     private ProgressBar loading_bar;
+
+    private EditText search;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,18 +82,34 @@ public class explore_screen extends Fragment {
         loading_bar.setIndeterminateDrawable(doublebounce);
 
 
-        OnclickListner(button1 , "Button 1 is clicked");
-        OnclickListner(button2 , "Button 2 is clicked");
-        OnclickListner(button3 , "Button 3 is clicked");
-        OnclickListner(button4 , "Button 4 is clicked");
-        OnclickListner(button5 , "Button 5 is clicked");
-        OnclickListner(button6 , "Button 6 is clicked");
+        OnclickListner(button1 , "chicken");
+        OnclickListner(button2 , "Salad");
+        OnclickListner(button3 , "Pasta");
+        OnclickListner(button4 , "Bread");
+        OnclickListner(button5 , "Pizza");
+        OnclickListner(button6 , "Egg");
+
+        search = view.findViewById(R.id.search_bar);
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_DONE){
+                    String query = search.getText().toString();
+                    loading_bar.setVisibility(View.VISIBLE);
+                    Intent intent = new Intent(getContext() , Explore_screen_result.class);
+                    intent.putExtra("recipe" , query);
+                    startActivity(intent);
+                    loading_bar.setVisibility(View.GONE);
+                    return true;
+                }
+                return false;
+            }
+        });
 
         return view;
     }
 
     private void imageLoading() {
-
         Glide.with(getContext()).load(images[0]).placeholder(R.drawable.placeholder).into(image1);
         Glide.with(getContext()).load(images[1]).placeholder(R.drawable.placeholder).into(image2);
         Glide.with(getContext()).load(images[2]).placeholder(R.drawable.placeholder).into(image3);
@@ -90,25 +121,12 @@ public class explore_screen extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getContext(), "pressed", Toast.LENGTH_SHORT).show();
                 loading_bar.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getContext() , Explore_screen_result.class);
+                intent.putExtra("recipe" , recipe);
+                startActivity(intent);
+                loading_bar.setVisibility(View.GONE);
             }
         });
     }
 
-    private void fetchData(String recipe) {
-        String url = "https://api.edamam.com/api/recipes/v2?type=public&q="+recipe+"&app_id=7b682c18&app_key=1f76887b48815e4c658877c6ed2d9eb8";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,
-                url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-    }
 }

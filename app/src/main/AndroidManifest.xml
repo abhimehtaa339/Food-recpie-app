@@ -16,10 +16,16 @@
         android:theme="@style/Theme.FoodRecipes"
         tools:targetApi="31">
         <activity
+            android:name=".Explore_screen_result"
+            android:exported="false" />
+        <activity
+            android:name=".Explorescreen_result"
+            android:exported="false" />
+        <activity
             android:name=".information_screen"
             android:exported="false" />
         <activity
-            android:name=".splash_screen"
+            android:name=".splash.splash_screen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

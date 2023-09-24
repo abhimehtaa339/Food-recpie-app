@@ -1,13 +1,14 @@
-package com.food.recipes;
+package com.food.recipes.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 
+import com.food.recipes.MainActivity;
+import com.food.recipes.R;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.ThreeBounce;
 

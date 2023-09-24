@@ -1,4 +1,4 @@
-package com.food.recipes;
+package com.food.recipes.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.food.recipes.MainActivity;
+import com.food.recipes.R;
 
 
 public class favourite_screen extends Fragment {

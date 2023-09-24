@@ -1,4 +1,4 @@
-package com.food.recipes;
+package com.food.recipes.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.food.recipes.R;
+import com.food.recipes.information_screen;
+import com.food.recipes.Modals.modal;
 
 import java.util.ArrayList;
 
@@ -43,6 +46,7 @@ public class custom_adapter extends RecyclerView.Adapter<custom_adapter.viewHold
                 Intent i = new Intent(context , information_screen.class);
                 i.putExtra("name" , mod.getLabel());
                 i.putExtra("image" , mod.getThumbnail_image());
+                i.putExtra("url" , mod.getUrl());
                 context.startActivity(i);
             }
         });

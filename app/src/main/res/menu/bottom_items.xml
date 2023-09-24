@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/summary"
+        android:icon="@drawable/book_svgrepo_com"
+        android:enabled="true"
+        android:title="Summary" />
+
+    <item android:id="@+id/ingredients"
+        android:icon="@drawable/ingredients_svgrepo_com"
+        android:enabled="true"
+        android:title="Ingredient"/>
+
+
+
+</menu>

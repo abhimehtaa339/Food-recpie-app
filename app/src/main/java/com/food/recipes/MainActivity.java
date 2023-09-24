@@ -1,19 +1,13 @@
 package com.food.recipes;
 
-import static com.food.recipes.R.id.favourite;
-import static com.food.recipes.R.id.home;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
 
 
 import android.content.Context;
-import android.icu.lang.UCharacter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -22,6 +16,9 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 
+import com.food.recipes.fragments.explore_screen;
+import com.food.recipes.fragments.favourite_screen;
+import com.food.recipes.fragments.home_screen;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
