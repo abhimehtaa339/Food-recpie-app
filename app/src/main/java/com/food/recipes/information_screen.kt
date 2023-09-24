@@ -124,6 +124,9 @@ class information_screen : AppCompatActivity() {
        supportFragmentManager.beginTransaction().replace(R.id.viewpager , fragment).commit()
     }
 
+    private fun add(){
+
+    }
 }
 
 
