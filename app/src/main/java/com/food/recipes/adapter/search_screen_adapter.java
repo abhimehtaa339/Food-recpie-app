@@ -1,6 +1,7 @@
 package com.food.recipes.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.food.recipes.Modals.modal;
 import com.food.recipes.R;
+import com.food.recipes.information_screen;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,16 @@ public class search_screen_adapter extends RecyclerView.Adapter<search_screen_ad
         Glide.with(context).load(mod.getThumbnail_image()).into(holder.img);
         String text = mod.getLabel();
         holder.textView.setText(text);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context , information_screen.class);
+                i.putExtra("name" , mod.getLabel());
+                i.putExtra("image" , mod.getThumbnail_image());
+                i.putExtra("url" , mod.getUrl());
+                context.startActivity(i);
+            }
+        });
     }
 
     @Override
