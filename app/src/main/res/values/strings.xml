@@ -11,5 +11,6 @@
     <string name="quick_recpie">Quick recpie</string>
     <string name="ready_to_explore">Ready to explore</string>
     <string name="api_key">552d63a010254181bb0fef40c75b8a47</string>
+    <string name="no_recipe_found">No recipe found</string>
 
 </resources>
