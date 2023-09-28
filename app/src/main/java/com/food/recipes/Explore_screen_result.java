@@ -7,6 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,6 +38,9 @@ public class Explore_screen_result extends AppCompatActivity {
     private JSONArray arr;
     public ArrayList<modal> data = new ArrayList<>();
     public search_screen_adapter adapter;
+    private ImageButton backbtn;
+    private TextView heading , subheading;
+    private ImageView notfound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,10 @@ public class Explore_screen_result extends AppCompatActivity {
         setContentView(R.layout.activity_explore_screen_result);
 
         recyclerView = findViewById(R.id.recyclerview);
+        backbtn = findViewById(R.id.backbtn);
+        heading = findViewById(R.id.Heading);
+        subheading = findViewById(R.id.subheading);
+        notfound = findViewById(R.id.nullimage);
 
         Intent i = new Intent();
         i = getIntent();
@@ -56,12 +67,16 @@ public class Explore_screen_result extends AppCompatActivity {
 
     private void fetchData(String recipe) {
         String url = "https://api.spoonacular.com/recipes/complexSearch?query="+recipe+"&maxFat=25&number=50&instructionsRequired=true&fillIngredients=true&addRecipeInformation=true";
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET,
                 url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        backbtn.setVisibility(View.GONE);
+                        heading.setVisibility(View.GONE);
+                        subheading.setVisibility(View.GONE);
+                        notfound.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
                         try {
                             JSONObject obj = new JSONObject(response);
                             arr = obj.getJSONArray("results");
@@ -82,13 +97,13 @@ public class Explore_screen_result extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
-                            Log.d("taggg", e.toString());
+                            Log.d("exception", e.toString());
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("tag", error.toString());
+                Log.d("error", error.toString());
                 Toast.makeText(getApplicationContext() ,error.toString(), Toast.LENGTH_SHORT).show();
             }
         }){
@@ -99,7 +114,6 @@ public class Explore_screen_result extends AppCompatActivity {
             return Headers;
         }
     };
-
     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         queue.add(stringRequest);
     }

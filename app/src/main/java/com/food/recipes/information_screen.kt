@@ -74,7 +74,7 @@ class information_screen : AppCompatActivity() {
 
 
         backbutton.setOnClickListener{
-            val intent = Intent(applicationContext , MainActivity::class.java)
+            val intent = Intent(applicationContext , Explore_screen_result::class.java)
             startActivity(intent)
             finish()
         }
@@ -87,7 +87,7 @@ class information_screen : AppCompatActivity() {
         }
 
         GlobalScope.launch {
-            if (database.SavedDao().getExist(url)){
+            if (database.SavedDao().getExist(image)){
                 favourite.setImageResource(R.drawable.baseline_bookmark_24)
                 isSelected = !isSelected
             }else{
@@ -102,12 +102,12 @@ class information_screen : AppCompatActivity() {
             if(!isSelected){
                 favourite.setImageResource(R.drawable.outline_bookmark_border_24)
                 GlobalScope.launch {
-                    database.SavedDao().delete(url)
+                    database.SavedDao().delete(image)
                 }
             }else{
                 favourite.setImageResource(R.drawable.baseline_bookmark_24)
                 GlobalScope.launch {
-                    database.SavedDao().insert(Saved_Recipe_Entity(0 , label , url))
+                    database.SavedDao().insert(Saved_Recipe_Entity(0 , label , image))
                 }
             }
         }
