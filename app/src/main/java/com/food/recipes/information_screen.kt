@@ -74,7 +74,7 @@ class information_screen : AppCompatActivity() {
 
 
         backbutton.setOnClickListener{
-            val intent = Intent(applicationContext , Explore_screen_result::class.java)
+            val intent = Intent(this , MainActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -111,10 +111,7 @@ class information_screen : AppCompatActivity() {
                 }
             }
         }
-
-
     }
-
 
     private fun replaceFragment(fragment: Fragment) {
         val bundle = Bundle()
